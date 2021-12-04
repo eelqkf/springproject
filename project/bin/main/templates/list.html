@@ -37,7 +37,7 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">카테고리</th>
+					
 					<th scope="col">상품명</th>
 					<th scope="col">재고량</th>
 					<th scope="col">사진</th>
@@ -50,17 +50,15 @@
 				<tr th:each="product : ${products}" >
 					<input id="id" type="hidden" th:value="${product.id}">
 					
-					<th id="c_name" th:text="${product.c_name}" th:value="${product.c_name}"></th > 
-					
 					<th id="p_name" th:text="${product.p_name}" th:value="${product.p_name}"></th >
 					
 					<th id="stock"th:text="${product.stock}" th:value="${product.stock}" ></th>
 					
-					<th>사진</th>
+					<th><img th:src="${product.filepath}"></th>
 					
 					<th id="price"th:text="${product.price}" th:value="${product.price}"></th>
 					
-					<td><input id="hidden" type="checkbox"></td>
+					<td><button id="hidden" th:value="#{product.id}">숨기기</button ></td>
 					
 					<td>
 					<button><a id="update"  th:href="@{/update(id=${product.id})}">수정</a></button >

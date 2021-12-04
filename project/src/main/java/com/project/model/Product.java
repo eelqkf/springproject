@@ -21,9 +21,29 @@ public class Product {
 	private int stock; // 재고량
 
 	private int price;// 가격
+	
+	private int ca_id; 
+	
+	private String filename;
+	
+	private String filepath;
 
 	
-	private String c_name; 
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public String getFilepath() {
+		return filepath;
+	}
+
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
+	}
 
 	public Long getId() {
 		return id;
@@ -57,19 +77,20 @@ public class Product {
 		this.price = price;
 	}
 
-	public String getC_name() {
-		return c_name;
+	public int getCa_id() {
+		return ca_id;
 	}
 
-	public void setC_name(String c_name) {
-		this.c_name = c_name;
+	public void setCa_id(int ca_id) {
+		this.ca_id = ca_id;
 	}
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", p_name=" + p_name + ", stock=" + stock + ", price=" + price + ", c_name="
-				+ c_name + "]";
+		return "Product [id=" + id + ", p_name=" + p_name + ", stock=" + stock + ", price=" + price + ", ca_id=" + ca_id
+				+ ", filename=" + filename + ", filepath=" + filepath + "]";
 	}
+
 
 	
 	

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Access Denied</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<label for="managerId">Manager ID</label>
+	<input type="text" id="managerId"><br>
+	<label for="password">Password</label>
+	<input type="password" id="password"><br>
+	<button id="signup">등록</button>
+
+	<script th:inline="javascript">
+		$(() => {
+			$('#signup').on('click', (event) => {
+				const managerId = $('#managerId').val();
+				const password = $('#password').val();
+				if (managerId == "" || password == "") {
+					alert('필수 항목이 누락되었습니다.');
+					return;
+				}
+				const manager = {
+					'managerId': managerId,
+					'managerPassword': password
+				}
+				const csrfToken =/*[[${_csrf.token}]]*/ null;
+				const csrfHeader =/*[[${_csrf.headerName}]]*/ null;
+				$.ajax({
+					url: '/api/manreg',
+					type: 'POST',
+					contentType: 'application/JSON',
+					data: JSON.stringify(manager),
+
+					beforeSend: function (xhr) {
+						xhr.setRequestHeader(csrfHeader, csrfToken);
+					}
+				})
+					.done((response) => {
+						if (response.result == 'success') {
+							alert('등록완료');
+							window.location.href = '/manager'
+						} else {
+							alert('등록실패');
+						}
+					})
+			});
+		});
+	</script>
+
+
+	</script>
+
+</body>
+
+</html>

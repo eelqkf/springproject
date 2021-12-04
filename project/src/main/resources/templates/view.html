@@ -31,16 +31,6 @@
 		</div>
 
 	</nav>
-	<div class="text-center" id="cate">
-	<h1>카테고리</h1>
-	
-	<button id="all"  value="0" type="submit">All</button >
-	
-	<th:block th:each="cate : ${category}">
-		<button th:text="${cate.c_name}" th:value="${cate.ca_id}" type="button"></button >
-	</th:block >
-	
-	</div >
 	<div id="view">
 	<table class="table" >
 
@@ -54,47 +44,16 @@
 			</tr >
 		</thead >
 		<tbody class="text-center">
-			<tr th:each="product : ${products}">
+			<tr th:each="product : ${selectProduct}">
 				<th th:text="${product.p_name}"></th>
 				<th><img th:src="${product.filepath}"></th>
 				<th th:text="${product.price}"></th>
-				<th><input id="cart" type="checkbox" th:value="${product.id}" ></th>
-				
+				<th><input type="checkbox" th:value="${product.id}"></thtupn>
 			</tr>
 		</tbody >
 	</table>
-	</div >
-	<button  id="order">주문</button>
-
+<!--	<button type="button" th:value="${product.id}">주문</button>-->
 </body>
-<script th:inline="javascript">
-   $(function () {
-      $("#cate button").on('click', function () {
-       const kind = $(this).val();
-         console.log($(this).val());
-         const csrfToken =/*[[${_csrf.token}]]*/ null;
-				const csrfHeader =/*[[${_csrf.headerName}]]*/ null;
-         $.ajax({
-            url: "/view",
-            type: "POST",
-            data: {"kind": kind},
-            beforeSend: function (xhr) {
-						xhr.setRequestHeader(csrfHeader, csrfToken);
-					},
-            success: function (data) {
-               console.log(data)
-               $('#view').html(data);
-               
-            }
-            
-         }).done((result) => {
-            //location.replace("/selectPd");
-
-         })
-
-	})
-   });
-</script>
 
 
 </html>

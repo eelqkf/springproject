@@ -48,11 +48,11 @@
 			<tbody>
 				<tr>
 					<th>
-						<select id="category">
- 								<option th:text="${c_name}"></option >
- 								<option th:each="category : ${category}" th:value="${category.c_name}" th:text="${category.c_name}">
- 								</option >
-							</select  >
+						<select>
+							<option value="">커피</option>
+							<option value="">라떼</option>
+							<option value="">에이드</option>
+						</select>
 					</th>
 					<th>
 						<input type="text" id="p_name" th:value="${p_name}" >
@@ -73,7 +73,7 @@
 		<div class="text-center">
 			<button id="update" type="submit" class="btn btn-primary">수정</button>
 			<button id="delete" type="submit" class="btn btn-primary">삭제</button>
-			<a type="button" class="btn btn-primary" th:href="@{/list}">돌아가기</a>
+			<a type="button" class="btn btn-primary" th:href="@{/list}">취소</a>
 		</div>
 	</div>
 
@@ -85,15 +85,13 @@
 			const p_name = $('#p_name').val();
 			const price = $('#price').val();
 			const stock = $('#stock').val();
-			const c_name = $('#category option:selected').val();
 			const path = '/api/update';
 
 			const json = JSON.stringify({
 				'id':id,
 				'p_name':p_name,
 				'price': price,
-				'stock': stock,
-				'c_name':c_name,
+				'stock': stock
 			});
 
 			$.ajax({
@@ -104,35 +102,6 @@
 
 			}).done(function(){
 				alert('상품이 수정되었습니다.');
-				window.location.href='/list';
-			}).fail(function(error){
-				alert(JSON.stringify(error));
-			})
-		}),
-		$('#delete').on('click', () => {
-			const id = $('#id').val();
-			const p_name = $('#p_name').text();
-			const price = $('#price').text();
-			const stock = $('#stock').text();
-			const c_name = $('c_name').val();
-			const path = '/api/delete';
-	
-			const json = JSON.stringify({
-				'id':id,
-				'p_name':p_name, 
-				'price': price,
-				'stock': stock,
-				'c_name':c_name,
-			});
-		console.log(json);
-			$.ajax({
-				url: path,
-				type: 'DELETE',
-				contentType: 'application/json',
-				data: json,
-
-			}).done(function(){
-				alert('상품이 삭제되었습니다.');
 				window.location.href='/list';
 			}).fail(function(error){
 				alert(JSON.stringify(error));

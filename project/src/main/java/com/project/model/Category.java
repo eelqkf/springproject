@@ -16,7 +16,7 @@ public class Category {
 	private Long ca_id;
 
 	@Column(unique = true)
-	private String c_name;
+	private String ca_name;
 
 	public Long getCa_id() {
 		return ca_id;
@@ -26,17 +26,17 @@ public class Category {
 		this.ca_id = ca_id;
 	}
 
-	public String getC_name() {
-		return c_name;
+	public String getCa_name() {
+		return ca_name;
 	}
 
-	public void setC_name(String c_name) {
-		this.c_name = c_name;
+	public void setC_name(String ca_name) {
+		this.ca_name = ca_name;
 	}
 
 	@Override
 	public String toString() {
-		return "Category [id=" + ca_id + ", c_name=" + c_name + "]";
+		return "Category [id=" + ca_id + ", ca_name=" + ca_name + "]";
 	}
 
 }
